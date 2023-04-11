@@ -1,6 +1,14 @@
 body{
    background-color: paleturquoise;
 }
+.main{
+   width: 620px;
+   height: 600px;
+   margin: auto;
+
+   background: #FFFFFF;
+   border-radius: 20px;
+}
 .button_link{
    width: 300px;
    height: 300px;
@@ -8,6 +16,7 @@ body{
 }
 
 .button_link_stud{
+   clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
 }
 .button_link_tracher {
    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);

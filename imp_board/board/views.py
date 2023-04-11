@@ -8,5 +8,5 @@ def choice_gr(request):
 
 def choice_fac(request):
     return render(request, 'board/choice_fac.html', context={
-        "from": student_validation
+        "form": student_validation
     })
