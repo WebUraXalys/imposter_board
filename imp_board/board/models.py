@@ -51,11 +51,11 @@ class AverageMark(models.Model):
     quality = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                         MinValueValidator(1)])
     methodological_support = models.IntegerField(default=5, validators=[MaxValueValidator(10),
-                                                                       MinValueValidator(1)])
+                                                                        MinValueValidator(1)])
     objectivity = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                             MinValueValidator(1)])
     discipline = models.ForeignKey(Discipline, on_delete=models.CASCADE)
     semester = models.IntegerField(default=0, verbose_name="Semester number", validators=[MaxValueValidator(10),
-                                                                              MinValueValidator(1)])
+                                                                                            MinValueValidator(1)])
     def __str__(self):
         return "Average " + self.group + " " + self.discipline
