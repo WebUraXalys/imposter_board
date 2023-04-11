@@ -43,9 +43,10 @@ def serve_main(request, groupname):
     grp = Group.objects.get(name=groupname)
     context = {
 
-        "disciplines": grp.disciplines
+        "disciplines": GroupsToDiscipline.objects.filter(group=grp)
     }
-    return render(request, 'board/main.html')
+    print(context['disciplines'])
+    return render(request, 'board/main.html', context=context)
 
 def send_invitation(request):
     print(settings.EMAIL_HOST_USER)
