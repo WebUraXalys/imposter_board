@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .forms import StudentValidation
+from .forms import StudentValidation, StudVal
 from .models import *
 from django.core.mail import send_mail
 

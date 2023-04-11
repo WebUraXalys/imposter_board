@@ -27,7 +27,7 @@ class Mark(models.Model):
                                                             MinValueValidator(1)])
     discipline = models.ForeignKey(Discipline, on_delete=models.CASCADE)
     semester = models.IntegerField(verbose_name="Semester number", validators=[MaxValueValidator(10),
-                                                                              MinValueValidator(1)])
+                                                                              MinValueValidator(1)], default=0)
 
 
 class AverageMark(models.Model):
