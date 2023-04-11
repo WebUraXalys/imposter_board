@@ -16,27 +16,15 @@ def choice_fac(request):
             grp = form.cleaned_data['group']
             request.session['group_name'] = grp.name
 
-            grp = form.cleaned_data['group']
-            request.session['group_name'] = grp.name
-
             user_mail = form.cleaned_data['email']
-            if not user_mail.endswith("@lnu.edu.ua") and settings.DEBUG == False:
-                return HttpResponse('403 Forbidden', status=403)
-
-            kw = {
-                "groupname": grp.name
-            }
-            user_mail = form.cleaned_data['email']
-            if not user_mail.endswith("@lnu.edu.ua") and settings.DEBUG == False:
-                return HttpResponse('403 Forbidden', status=403)
 
             kw = {
                 "groupname": grp.name
             }
 
             send_mail("Оцінювання викладачів",
- 
-            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {reverse('main', groupname=grp.name)}",
+
+            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {redirect('main', groupname=grp.name)}",
             settings.DEFAULT_FROM_MAIL, [user_mail])
             
             request.session['allow-group'] = grp.name
@@ -94,3 +82,11 @@ def generate_faculties(request):
     for faculty in faculties:
         Faculty.objects.create(name=faculty)
     return HttpResponse("Done")
+
+
+def group_gen(request):
+    fac = Faculty.objects.get(name="Факультет електроніки та комп’ютерних технологій")
+    groups = ['ФЕМ', 'ФЕП', 'ФЕС', 'ФЕІ']
+    for i in groups:
+        Group.objects.create(name="{i}-11", faculty=fac)
+    return HttpResponse("Generated")
