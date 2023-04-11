@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Discipline, Mark, Teacher, Faculty, Group, AverageMark
+from .models import Discipline, Mark, Teacher, Faculty, Group, AverageMark, GroupsToDiscipline
 
 
 # Register your models here.
@@ -29,6 +29,9 @@ class MarkAdmin(admin.ModelAdmin):
 class AverageMarkAdmin(admin.ModelAdmin):
     list_display = ['group', 'quality', 'methodological_support', 'objectivity', 'discipline']
 
+class GroupsToDisciplineAdmin(admin.ModelAdmin):
+    list_display = ['discipline', 'group']
+
 
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Teacher, TeacherAdmin)
@@ -36,3 +39,4 @@ admin.site.register(Discipline, DisciplineAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Mark, MarkAdmin)
 admin.site.register(AverageMark, AverageMarkAdmin)
+admin.site.register(GroupsToDiscipline, GroupsToDisciplineAdmin)
