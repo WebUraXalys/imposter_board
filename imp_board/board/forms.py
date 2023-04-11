@@ -17,7 +17,7 @@ class StudentValidation(forms.Form):
     group = forms.ModelChoiceField(queryset=Group.objects.all().order_by('name'))
     email = forms.CharField(label="email", max_length=100)
 
-    def __init__(*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(StudentValidation, self).__init__(*args, **kwargs)
         self.fields['faculty'].widget.attrs['placeholder'] = 'Оберіть ваш факультет'
         self.fields['group'].widget.attrs['placeholder'] = 'Оберіть вашу групу'
