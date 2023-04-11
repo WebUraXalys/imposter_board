@@ -4,3 +4,4 @@ from django.shortcuts import render, HttpResponse
 
 def choice_gr(request):
     return render(request, 'board/choice_group.html')
+
