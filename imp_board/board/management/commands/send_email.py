@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print(settings.EMAIL_HOST_USER)
         print(settings.EMAIL_HOST_PASSWORD)
-        send_mail(
+        return send_mail(
         'Invitation',
         'Вітаємо. Це тестове повідомлення для перевірки роботи',
         'volodymyrpetriv2207@gmail.com',
