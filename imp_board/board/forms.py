@@ -1,5 +1,5 @@
 from django import forms
-from .models import Group
+from .models import Group, Faculty
 
 class StudVal(forms.ModelForm):
     faculty = forms.CharField(label="faculty", max_length=30)
@@ -11,7 +11,8 @@ class StudVal(forms.ModelForm):
 
 
 class StudentValidation(forms.Form):
-    faculty = forms.CharField(label="faculty", max_length=30)
+    faculty = forms.ModelChoiceField(queryset=Faculty.objects.all().order_by('name'))
+    # faculty = forms.CharField(label="faculty", max_length=30)
     # group = forms.CharField(label="group", max_length=10)
     group = forms.ModelChoiceField(queryset=Group.objects.all().order_by('name'))
     email = forms.CharField(label="email", max_length=100)
