@@ -20,9 +20,13 @@ def choice_fac(request):
             if not user_mail.endswith("@lnu.edu.ua") and settings.DEBUG == False:
                 return HttpResponse('403 Forbidden', status=403)
 
+            kw = {
+                "groupname": grp.name
+            }
+
             send_mail("Оцінювання викладачів",
 
-            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {redirect('main', groupname=grp.name)}",
+            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {reverse('main', kwargs=kw)}",
             settings.DEFAULT_FROM_MAIL, [user_mail])
             
             request.session['allow-group'] = grp.name
