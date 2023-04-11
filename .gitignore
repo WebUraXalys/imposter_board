@@ -2,3 +2,4 @@
 /.idea
 /.vc
 /venv
+__pycache__/
