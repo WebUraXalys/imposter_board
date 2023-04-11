@@ -3,7 +3,6 @@ from .forms import StudentValidation, StudVal
 from .models import *
 from django.core.mail import send_mail
 from django.conf import settings
-from settings import DEFAULT_FROM_MAIL
 from django.urls import reverse
 
 def choice_gr(request):
@@ -13,23 +12,24 @@ def choice_fac(request):
     if request.method == "POST":
         form = StudentValidation(request.POST)
         if form.is_valid:
-                grp = Group.objects.get(name=form.name)
-                request.session['group_name'] = grp.name
+            grp = Group.objects.get(name=form.name)
+            grp.name = ""
+            request.session['group_name'] = grp.name
 
-                user_mail = form.email
+            user_mail = form.email
 
-                send_mail("Оцінювання викладачів",
-                f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {reverse('main')}",
-                DEFAULT_FROM_MAIL, [user_mail])
-                
-                request.session['allow-group'] = grp.name
+            send_mail("Оцінювання викладачів",
+            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {reverse('main', groupname=grp.name)}",
+            settings.DEFAULT_FROM_MAIL, [user_mail])
+            
+            request.session['allow-group'] = grp.name
 
     return render(request, 'board/choice_fac.html', context={
         "form": StudentValidation
     })
 
 
-def serve_main(request):
+def serve_main(request, groupname):
     return render(request, 'board/main.html')
 
 def send_invitation(request):

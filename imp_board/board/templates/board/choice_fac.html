@@ -7,8 +7,12 @@
    <title>Document</title>
 </head>
 <body>
-   
-   {{ form.as_p }} 
+   <form method="POST">
+      {{ form.as_p }}
+      <input type="submit">
+      {% csrf_token %}
+   </form>
+    
 
 </body>
 </html>
