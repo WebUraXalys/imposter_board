@@ -18,7 +18,7 @@ class Group(models.Model):
 
 
 class Mark(models.Model):
-    group = models.ForeignKey(Group)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
     quality = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                         MinValueValidator(1)])
     methodological_support = models.IntegerField(default=5, validators=[MaxValueValidator(10),
@@ -31,7 +31,7 @@ class Mark(models.Model):
 
 
 class AverageMark(models.Model):
-    group = models.ForeignKey(Group)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
     quality = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                         MinValueValidator(1)])
     methodological_support = models.IntegerField(default=5, validators=[MaxValueValidator(10),
