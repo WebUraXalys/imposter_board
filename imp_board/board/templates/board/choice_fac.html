@@ -1,18 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Вітаємо!</title>
+   <link rel="stylesheet" href="{% static 'board/style.css' %}">
 </head>
 <body>
-   <form method="POST">
-      {{ form.as_p }}
-      <input type="submit">
-      {% csrf_token %}
-   </form>
-    
-
+   <div class="conteiner">
+      <main class="main">
+         <div class="welcome_div">
+            <h1 class="welcome">
+               Оберіть факультет
+            </h1>
+         </div>
+         <div class="form">
+            <form method="POST">
+               {{ form.as_p }}
+               <input type="submit">
+               {% csrf_token %}
+            </form>
+            <button class="button_form button1">Підтвердити</button>
+         </div>
+      </main>
+   </div>
+   <script src="{% static 'board/main.js' %}"></script>
 </body>
 </html>

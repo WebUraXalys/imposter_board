@@ -1,3 +1,10 @@
+.add {
+   display: block;
+}
+
+.none {
+   display: none;
+}
 body{
    background-color: paleturquoise;
 }
@@ -93,5 +100,49 @@ body{
    line-height: 48px;
 
    color: #FFFFFF;
+}
+
+
+/* step2 */
+
+.button_form{
+   position: absolute;
+   width: 437px;
+   height: 138px;
+   left: 501px;
+   top: 456px;
+
+   background: #B4F289;
+   border-radius: 20px;
+   border: none;
+
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 36px;
+   line-height: 44px;
+   /* identical to box height */
+
+
+   color: #000000;
+}
+label{
+   display: none;
+}
+#id_faculty{
+   /* display: none; */
+}
+#id_group{
+   /* display: none; */
+   width: 400px;
+   height: 100px;
+   margin: auto;
+
+   background: #E1E1E1;
+   border-radius: 20px;
+   border: none;
+}
+#id_email{
+   /* display: none; */
 }
 
