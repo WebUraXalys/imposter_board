@@ -43,7 +43,7 @@ def serve_main(request, groupname):
     grp = Group.objects.get(name=groupname)
     context = {
 
-        "disciplines": grp.disciplines.all()
+        "disciplines": grp.disciplines
     }
     return render(request, 'board/main.html')
 
