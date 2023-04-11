@@ -6,6 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Вітаємо!</title>
+   <link rel="stylesheet" href="{% static 'board/style.css' %}">
 </head>
 <body>
    <div class="conteiner">
@@ -19,7 +20,16 @@
             </p>
          </div>
          <div class="buttons">
-            <button></button>
+            <a href="#" class="link_button">
+               <button class="button_link button_link_stud">
+                  <p class="link_p">Студент</p>
+               </button>
+            </a>
+            <a href="#" class="link_button">
+               <button class="button_link button_link_tracher">
+                  <p class="link_p">Викладач</p>
+               </button>
+            </a>
          </div>
       </main>
    </div>
