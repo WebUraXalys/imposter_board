@@ -1,23 +1,97 @@
 body{
    background-color: paleturquoise;
 }
+.conteiner{
+   margin-top: 135px;
+}
 .main{
-   width: 620px;
-   height: 600px;
+   width: 520px;
+   height: 530px;
    margin: auto;
-
    background: #FFFFFF;
    border-radius: 20px;
 }
+.welcome{
+   width: 168px;
+   height: 48px;
+   margin: auto;
+   padding-top: 54px;
+
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 40px;
+   line-height: 48px;
+   text-align: center;
+
+   color: #000000;
+}
+.descriptios{
+   width: 420px;
+   height: 100px;
+   margin: auto;
+   margin-top: 12px;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 29px;
+   text-align: center;
+
+   color: #000000;
+}
+.buttons{
+   position: relative;
+   width: 450px;
+   margin: auto;
+}
 .button_link{
-   width: 300px;
-   height: 300px;
-   background: #000;
+   width: 450px;
+   height: 270px;
 }
 
 .button_link_stud{
-   clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+   position: relative;
+   top: 0;
+   left: 0;
+   clip-path: polygon(0% 0%, 100% 0%, 00% 100%);
+   background-color: #5EA8C2;
+   border: none;
 }
 .button_link_tracher {
+   position: absolute;
+   top: 5px;
+   left: 0;
    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+   background-color: #B4F289;
+   border: none;
 }
+.link_button {
+   text-decoration: none;
+   position: absolute;
+   display: block;
+   top: 0;
+   width: 230px;
+   height: 150px;
+}
+.button_link_tracher>.link_button {
+   top: 120px;
+   right: 0;
+}
+.button_link_tracher> .link_button > .link_p {
+   top: 20px;
+   left: -5px;
+}
+.link_p{
+   position: absolute;
+   top: 20px;
+   left: 30px;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 40px;
+   line-height: 48px;
+
+   color: #FFFFFF;
+}
+
