@@ -13,6 +13,7 @@ def choice_fac(request):
         if form.is_valid:
                 grp = Group.objects.get(name=form.name)
                 request.session['group_name'] = grp.name
+                
     return render(request, 'board/choice_fac.html', context={
         "form": StudentValidation
     })
