@@ -2,11 +2,6 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=6, verbose_name="Group name")
-    disciplines = models.ManyToManyField(Discipline)
-
-
 # Create your models here.
 class Teacher(models.Model):
     name = models.CharField(max_length=20, verbose_name="Teacher name")
@@ -15,6 +10,11 @@ class Teacher(models.Model):
 class Discipline(models.Model):
     name = models.CharField(max_length=20, verbose_name="Discipline name")
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=6, verbose_name="Group name")
+    disciplines = models.ManyToManyField(Discipline)
 
 
 class Mark(models.Model):
