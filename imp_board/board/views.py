@@ -16,23 +16,9 @@ def choice_fac(request):
             grp = form.cleaned_data['group']
             request.session['group_name'] = grp.name
 
-            grp = form.cleaned_data['group']
-            request.session['group_name'] = grp.name
-
             user_mail = form.cleaned_data['email']
             if not user_mail.endswith("@lnu.edu.ua") and settings.DEBUG == False:
                 return HttpResponse('403 Forbidden', status=403)
-
-            kw = {
-                "groupname": grp.name
-            }
-            user_mail = form.cleaned_data['email']
-            if not user_mail.endswith("@lnu.edu.ua") and settings.DEBUG == False:
-                return HttpResponse('403 Forbidden', status=403)
-
-            kw = {
-                "groupname": grp.name
-            }
 
             send_mail("Оцінювання викладачів",
  
@@ -53,7 +39,7 @@ def serve_main(request, groupname):
     grp = Group.objects.get(name=groupname)
     context = {
 
-        "disciplines": grp.disciplines
+        "disciplines": grp.disciplines.all()
     }
     return render(request, 'board/main.html')
 
