@@ -13,6 +13,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
 class DisciplineAdmin(admin.ModelAdmin):
     list_display = ['name', 'teacher']
+    
 
 class GroupAdmin(admin.ModelAdmin):
     list_display = ['name', 'disciplines', 'faculty']
@@ -23,9 +24,6 @@ class GroupAdmin(admin.ModelAdmin):
 
 class MarkAdmin(admin.ModelAdmin):
     list_display = ['group', 'quality', 'methodological_support', 'objectivity', 'discipline']
-
-class GroupAmin(admin.ModelAdmin):
-    list_display = ['name', 'disciplines']
 
 
 class AverageMarkAdmin(admin.ModelAdmin):

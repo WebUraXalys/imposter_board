@@ -88,7 +88,7 @@ def generate_faculties(request):
 
 def group_gen(request):
     fac = Faculty.objects.get(name="Факультет електроніки та комп’ютерних технологій")
-    groups = ['ФЕМ', 'ФЕП', 'ФЕС', 'ФЕІ']
+    groups = ['ФЕМ', 'ФЕП', 'ФЕС', 'ФЕІ', 'ФЕЛ']
     for i in groups:
         Group.objects.create(name=f"{i}-11", faculty=fac)
     return HttpResponse("Generated")
