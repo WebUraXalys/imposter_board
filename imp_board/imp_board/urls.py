@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import choice_group
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('board.urls'))
+    path('students/', include('board.urls')),
+    path('', choice_group, name='chgr')
 ]
