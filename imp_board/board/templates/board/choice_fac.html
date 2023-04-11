@@ -17,7 +17,11 @@
             </h1>
          </div>
          <div class="form">
-            {{ form.as_p }}
+            <form method="POST">
+               {{ form.as_p }}
+               <input type="submit">
+               {% csrf_token %}
+            </form>
             <button class="button_form button1">Підтвердити</button>
          </div>
       </main>
