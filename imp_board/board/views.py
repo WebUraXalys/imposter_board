@@ -133,17 +133,16 @@ def tchfc(request):
             fac = form.cleaned_data['faculty']
             return redirect('tch', fac=fac.id)
     return render(request, 'board/teacher_fac.html', context={
-        "from": TeacherFacCh
+        "form": TeacherFacCh
     })
 
-
 def teacher_ch(request, fac):
-    if request.method == "POST":
-        form = TeacherChoice(request.POST)
-        if form.is_valid():
-            fac = Faculty.objects.get(id=fac)
+    teachers = Teacher.objects.filter(faculty=Faculty.objects.get(id=fac))
+    tchs = []
+    for t in teachers:
+        tchs.append(t.name)
     return render(request, 'board/teacher_choice.html', context={
-        "form": TeacherChoice
+        "teachers": tchs
     })
 
 

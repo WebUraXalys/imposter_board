@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    {{ form.as_p }}
+    <form method="POST">
+        <select name="teacher" id="teacher">
+            {% for teacher in teachers %}
+            <option value="{{ teacher }}">{{ teacher }}</option>
+            {% endfor %}
+        </select>
+    </form>
 </body>
 </html>
