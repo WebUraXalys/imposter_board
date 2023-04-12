@@ -32,5 +32,28 @@ function hideForms(){
       form.classList.remove('add');
 });
 }
+
+
+// const emailInput = document.getElementById('email');
+// const submitButton = document.getElementById('submit');
+let clickCount = 0;
+
+buttonForm.addEventListener('click', () => {
+  clickCount++;
+   console.log(currentVisibleFormIndex);
+  if (currentVisibleFormIndex === 2) {
+    const emailValue = inputEmail.value;
+    const validDomain = '@lnu.edu.ua';
+
+    if (emailValue.endsWith(validDomain)) {
+      // valid email
+      // do something here
+    } else {
+      // invalid email
+      alert('Ви ввели неправильну пошту, пройдіть реєстрацію знов викоритовуючи Вашу корпоратвину пошту @lnu.edu.ua');
+    }
+  }
+});
+
   buttonForm.addEventListener("click", displayNextForm);
   window.addEventListener("DOMContentLoaded", displayFirstForm);
