@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вітаємо!</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="conteiner">
@@ -28,15 +31,20 @@
                     <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
                     <hr>
                     <div class="block_marks">
-                        .
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                    <p class="">Коментра</p>
+                        <div class="block_marks_inputs">
+                            <p >Я:</p>
+                            <input type="text" name="" id="">
+                            <p >Я:</p>
+                            <input type="text" name="" id="">
+                            <p >Я:</p>
+                            <input type="text" name="" id="">
+                        </div>
+                        <div class="komentar">
+                            <p class="">Коментра</p>
+                            <input type="text">
+                        </div>
                     </div>
-                    <input type="text">
                     <hr>
-
                 </div>
                 {% endfor %}
             </div>

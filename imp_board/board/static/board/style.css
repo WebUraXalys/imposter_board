@@ -242,6 +242,35 @@ option{
    margin: auto;
    padding-top: 30px;
 }
+.h2marks{
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 40px;
+   line-height: 48px;
+
+   color: #000000;
+
+}
+.disciplines_p{
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 40px;
+   line-height: 48px;
+
+   color: #000000;
+
+}
+.disciplines_teacher{
+   
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 32px;
+   line-height: 39px;
+   color: #000000;
+}
 
 @media (max-width: 530px) {
    .main{
