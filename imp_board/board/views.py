@@ -9,6 +9,10 @@ from django.urls import reverse, reverse_lazy
 from datetime import datetime
 import xlwt
 from xlwt import Workbook
+import qrcode
+from PIL import Image
+import base64
+import io
 
 def choice_gr(request):
     return render(request, 'board/choice_group.html')
@@ -154,9 +158,34 @@ def teacher_ch(request, fac):
         "f": TeacherChoice
     })
 
+
+def generate_qrcode_to_base64(data):    # Генеруємо QR-код
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Зберігаємо зображення у пам'яті
+    buffer = io.BytesIO()
+    img.save(buffer, format='PNG')
+    buffer.seek(0)
+
+    # Конвертуємо зображення до base64
+    image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+    return image_base64
+
+
 def teacher_page(request, name):
     teacher = Teacher.objects.get(name=name)
     disciplines = Discipline.objects.filter(teacher=teacher)
+    img = generate_qrcode_to_base64('imp/ig4er.link/' + request.get_full_path()[:-1] + "?qr=True")
     data = []
     for discipline in disciplines:
         groups = GroupsToDiscipline.objects.filter(discipline=discipline)
@@ -166,14 +195,19 @@ def teacher_page(request, name):
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
             except:
+<<<<<<< HEAD
                 avarage = None
+=======
+                average = None
+>>>>>>> e9638c9d40f3be107cb19c7d494e33aa491943ca
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
             data.append(stats)
     return render(request, 'board/teacher.html', context={
         "teacher": teacher,
-        "data": data
+        "data": data,
+        "image": img
     })
 
 
@@ -270,3 +304,25 @@ def generete_excel(request, pk):
 
     wb.save(f"Оцінювання {group}.xls")
     return HttpResponse("Generated excel")
+
+
+def feedbacks(request, name):
+    teacher = Teacher.objects.get(name=name)
+    disciplines = Discipline.objects.filter(teacher=teacher)
+    data = []
+    for discipline in disciplines:
+        groups = GroupsToDiscipline.objects.filter(discipline=discipline)
+        for group in groups:
+            try:
+                avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk).note
+            except:
+                average = None
+            stats = {'discipline': discipline,
+                     'group': group,
+                     'avarage': avarage}
+            data.append(stats)
+
+    return render(request, 'board/teacher.html', context={
+        "teacher": teacher,
+        "data": data
+    })

@@ -15,6 +15,7 @@
 
 <body>
 
+
    <div class="conteiner">
       <main class="main main_mark">
          <div class="welcome_div">
@@ -25,6 +26,12 @@
 
          {{ teacher.name }}
     {%for d in data%}
+
+   {{ teacher.name }}
+   {{qr_code}}
+   <img src="data:image/png;base64,{{ image }}" />
+   
+   {%for d in data%}
       {{d}}
       
    {%endfor%}
