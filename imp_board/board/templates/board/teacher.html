@@ -11,6 +11,9 @@
 </head>
 <body>
    {{ teacher.name }}
+   {{qr_code}}
+   <img src="data:image/png;base64,{{ image }}" />
+   
    {%for d in data%}
       {{d}}
       <div class="vidhuk">
