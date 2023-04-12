@@ -28,7 +28,7 @@ def choice_fac(request):
 
             send_mail("Оцінювання викладачів",
 
-            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. <a href=http://imp.ig4er.link\"{reverse('main', kwargs=kw)}\">",
+            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. http://imp.ig4er.link{reverse('main', kwargs=kw)}>",
             settings.DEFAULT_FROM_MAIL, [user_mail])
             
             request.session['allow-group'] = grp.name
