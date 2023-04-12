@@ -162,7 +162,12 @@ def teacher_page(request, name):
     for discipline in disciplines:
         groups = GroupsToDiscipline.objects.filter(discipline=discipline)
         for group in groups:
-            avarage = AverageMark.objects.get(group=group, discipline=discipline)
+            print(group.pk)
+            print(discipline.pk)
+            try:
+                avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
+            except:
+                pass
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
