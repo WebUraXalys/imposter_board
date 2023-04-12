@@ -92,3 +92,17 @@ def group_gen(request):
     for i in groups:
         Group.objects.create(name=f"{i}-11", faculty=fac)
     return HttpResponse("Generated")
+
+
+def create_or_update_average_mark(mark):
+    avermark, created = AverageMark.objects.get_or_create(group=mark.group, discipline=mark.discipline, semester=mark.semester)
+    if created:
+        avermark.quality = mark.quality
+        avermark.methodological_support = mark.methodological_support
+        avermark.objectivity - mark.objectivity
+    else:
+        marks_number = len(Mark.objects.filter(group=mark.group, discipline=mark.discipline, semester=mark.semester))
+        avermark.quality = (avermark.quality * marks_number) + mark.quality / (marks_number+1)
+        avermark.methodological_support = (avermark.methodological_support * marks_number) + mark.methodological_support / (marks_number+1)
+        avermark.objectivity = (avermark.objectivity * marks_number) + mark.objectivity / (marks_number+1)
+    avermark.save()
