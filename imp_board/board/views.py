@@ -166,7 +166,7 @@ def teacher_page(request, name):
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
             except:
-                pass
+                average = None
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
@@ -270,3 +270,25 @@ def generete_excel(request, pk):
 
     wb.save(f"Оцінювання {group}.xls")
     return HttpResponse("Generated excel")
+
+
+def feedbacks(request, name):
+    teacher = Teacher.objects.get(name=name)
+    disciplines = Discipline.objects.filter(teacher=teacher)
+    data = []
+    for discipline in disciplines:
+        groups = GroupsToDiscipline.objects.filter(discipline=discipline)
+        for group in groups:
+            try:
+                avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk).note
+            except:
+                pass
+            stats = {'discipline': discipline,
+                     'group': group,
+                     'avarage': avarage}
+            data.append(stats)
+
+    return render(request, 'board/teacher.html', context={
+        "teacher": teacher,
+        "data": data
+    })

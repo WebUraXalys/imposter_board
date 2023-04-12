@@ -14,5 +14,6 @@ urlpatterns = [
     path("gen/<pk>", generete_excel),
     path('tcf/', tchfc, name="tchfc"),
     path('tc/<int:fac>', teacher_ch, name="tch"),
-    path('t/<name>/', teacher_page, name="tp")
+    path('t/<name>/', teacher_page, name="tp"),
+    path('t/<name>/feedbacks', feedbacks, name="tp"),
 ]
