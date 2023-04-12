@@ -22,12 +22,13 @@
         </div>
         <div class="form">
             <form method="POST">
-                <select name="teacher" id="teacher">
+                <select name="teacher" id="id_teacher">
                     {% for teacher in teachers %}
-                    <option value="{{ teacher }}">{{ teacher }}</option>
+                    <option value="{{ teacher.id }}">{{ teacher.name }}</option>
                     {% endfor %}
+                    <input type="submit">
+                    {% csrf_token %}
                 </select>
-                <input type="submit" class="button_form "></input>
             </form>
         </div>
     </main>
