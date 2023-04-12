@@ -61,9 +61,7 @@ def create_mark(request):
 
             mrk = Mark.objects.update_or_create(group=grp, quality=int(q), methodological_support=int(m), objectivity=int(o), discipline=disc, semester=semester, note=note)
 
-            #create_or_update_average_mark(mrk)
-
-            print("imhere")
+            # create_or_update_average_mark(mrk)
 
             return redirect('main', groupname=grp.name)
     else:
@@ -167,7 +165,7 @@ def teacher_page(request, name):
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
             except:
-                pass
+                average = None
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
