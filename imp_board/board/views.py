@@ -185,7 +185,7 @@ def generate_qrcode_to_base64(data):    # Генеруємо QR-код
 def teacher_page(request, name):
     teacher = Teacher.objects.get(name=name)
     disciplines = Discipline.objects.filter(teacher=teacher)
-    img = generate_qrcode_to_base64('imp/ig4er.link/' + request.get_full_path() + "?qr=True")
+    img = generate_qrcode_to_base64('imp/ig4er.link/' + request.get_full_path()[:-1] + "?qr=True")
     data = []
     for discipline in disciplines:
         groups = GroupsToDiscipline.objects.filter(discipline=discipline)
