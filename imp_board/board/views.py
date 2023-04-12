@@ -191,6 +191,7 @@ def teacher_page(request, name):
         for group in groups:
             print(group.pk)
             print(discipline.pk)
+            avarage = None
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
             except:
