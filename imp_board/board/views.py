@@ -152,3 +152,7 @@ def current_semester(request, pk):
         semester = 0
 
     return HttpResponse(passed_semesters + semester)
+
+
+def generete_excel(request, pk):
+    disciplines = GroupsToDiscipline.objects.filter(group=pk)
