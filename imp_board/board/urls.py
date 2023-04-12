@@ -7,5 +7,6 @@ urlpatterns = [
     path('email/', send_invitation, name="email"),
     path('mark/<groupname>', serve_main, name="main"),
     path('facgen/', generate_faculties, name="facgen"),
-    path('groupgen/', group_gen, name="groupgen")
+    path('groupgen/', group_gen, name="groupgen"),
+    path('curr_semester/<pk>', current_semester, name="semester")
 ]

@@ -27,7 +27,7 @@ class Discipline(models.Model):
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=6, verbose_name="Group name")
+    name = models.CharField(max_length=7, verbose_name="Group name")
     disciplines = models.ManyToManyField(Discipline, blank=True),
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
 
