@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
-from .forms import StudentValidation, StudVal, TeacherChoice
+from .forms import StudentValidation, StudVal, TeacherChoice, TeacherFacCh
 from .models import *
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
@@ -126,8 +126,22 @@ def group_gen(request):
     return HttpResponse("Generated")
 
 
-def teacher_ch(request):
+def tchfc(request):
+    if request.method == "POST":
+        form = TeacherFacCh(request.POST)
+        if form.is_valid():
+            fac = form.cleaned_data['faculty']
+            return redirect('tch', fac=fac.id)
+    return render(request, 'board/teacher_fac.html', context={
+        "from": TeacherFacCh
+    })
 
+
+def teacher_ch(request, fac):
+    if request.method == "POST":
+        form = TeacherChoice(request.POST)
+        if form.is_valid():
+            fac = Faculty.objects.get(id=fac)
     return render(request, 'board/teacher_choice.html', context={
         "form": TeacherChoice
     })
