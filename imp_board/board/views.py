@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
-from .forms import StudentValidation, StudVal, TeacherChoice, TeacherFacCh
+from .forms import StudentValidation, StudVal, TeacherChoice, TeacherFacCh, MarkVal
 from .models import *
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
