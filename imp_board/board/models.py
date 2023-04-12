@@ -18,7 +18,7 @@ class Teacher(models.Model):
 
 
 class Discipline(models.Model):
-    name = models.CharField(max_length=20, verbose_name="Discipline name")
+    name = models.CharField(max_length=50, verbose_name="Discipline name")
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     
@@ -51,6 +51,7 @@ class Mark(models.Model):
     objectivity = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                             MinValueValidator(1)])
     discipline = models.ForeignKey(Discipline, on_delete=models.CASCADE)
+    note = models.CharField(verbose_name="Примітка", null=True, blank=True)
     semester = models.IntegerField(default=0, verbose_name="Semester number", validators=[MaxValueValidator(10),
                                                                               MinValueValidator(1)])
     
