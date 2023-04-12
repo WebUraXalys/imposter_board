@@ -31,10 +31,31 @@ def choice_fac(request):
             
             request.session['allow-group'] = grp.name
 
+            return redirect('mail_sent')
+
     return render(request, 'board/choice_fac.html', context={
         "form": StudentValidation
     })
 
+def mail_sent(request):
+    return render(request, 'board/mail_sent.html')
+
+def create_mark(request):
+    if request.method == "POST":
+        grpname = Group.objects.get(name=request.session["allow-group"])
+        disc = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).discipline
+        grp = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).group
+
+        if grp.name != grpname:
+            return HttpResponse("403 Forbidden", status=403)
+
+        q = request.POST.get('quality')
+        m = request.POST.get('methodology')
+        o = request.POST.get('objectivity')
+
+
+    else:
+        return HttpResponse("405 Method Not Allowed", status=405)
 
 def serve_main(request, groupname):
     if not request.session.get("allow-group", None) == groupname:
