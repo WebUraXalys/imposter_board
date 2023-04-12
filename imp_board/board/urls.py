@@ -11,5 +11,7 @@ urlpatterns = [
     path('curr_semester/<pk>', current_semester, name="semester"),
     path('mail_sent/', mail_sent, name="mail_sent"),
     path('addmark/', create_mark, name="addmar"),
-    path("gen/<pk>", generete_excel)
+    path("gen/<pk>", generete_excel),
+    path('tcf/', tchfc, name="tchfc"),
+    path('tc/<int:fac>', teacher_ch, name="tch"),
 ]

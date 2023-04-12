@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
-from .forms import StudentValidation, StudVal
+from .forms import StudentValidation, StudVal, TeacherChoice, TeacherFacCh
 from .models import *
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
@@ -30,7 +30,7 @@ def choice_fac(request):
 
             send_mail("Оцінювання викладачів",
 
-            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. {reverse('main', kwargs=kw)}",
+            f" Ось ваше особисте посилання для оцінювання викладачів. Воно працює тільки з того девайсу з якого ви відправляти ваші дані. http://imp.ig4er.link{reverse('main', kwargs=kw)}",
             settings.DEFAULT_FROM_MAIL, [user_mail])
             
             request.session['allow-group'] = grp.name
@@ -126,6 +126,26 @@ def group_gen(request):
     for i in groups:
         Group.objects.create(name=f"{i}-11", faculty=fac)
     return HttpResponse("Generated")
+
+
+def tchfc(request):
+    if request.method == "POST":
+        form = TeacherFacCh(request.POST)
+        if form.is_valid():
+            fac = form.cleaned_data['faculty']
+            return redirect('tch', fac=fac.id)
+    return render(request, 'board/teacher_fac.html', context={
+        "form": TeacherFacCh
+    })
+
+def teacher_ch(request, fac):
+    teachers = Teacher.objects.filter(faculty=Faculty.objects.get(id=fac))
+    tchs = []
+    for t in teachers:
+        tchs.append(t.name)
+    return render(request, 'board/teacher_choice.html', context={
+        "teachers": tchs
+    })
 
 
 def create_or_update_average_mark(mark):

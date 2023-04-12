@@ -12,6 +12,7 @@ class Faculty(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=20, verbose_name="Teacher name")
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return self.name

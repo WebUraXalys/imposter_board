@@ -6,6 +6,7 @@
    display: none;
 }
 body{
+   height: 100vh;
    background: linear-gradient(287.03deg, #43BFC9 0%, #F9F871 121.21%);
 }
 .conteiner{
@@ -106,11 +107,18 @@ body{
 /* step2 */
 
 .button_form{
-   position: absolute;
-   width: 440px;
-   height: 138px;
-   left: 501px;
-   top: 456px;
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 32px;
+gap: 10px;
+
+width: 440px;
+height: 102px;
+margin: auto;
+margin-top: 40px;
 
    background: #B4F289;
    border-radius: 20px;
@@ -163,6 +171,13 @@ option{
    border-radius: 20px;
    border: none;
 }
+.id_email_prob{
+   padding: 32px;
+   gap: 10px;
+   background: #FFE4E4;
+   border: 2px solid #FF3E3E;
+   border-radius: 20px;
+}
 #id_email{
    /* display: none; */
    width: 440px;
@@ -193,3 +208,80 @@ option{
    /* margin-left: 10px; */
 }
 
+
+.description_p{
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 29px;
+   width: 400px;
+   margin: auto;
+   margin-top: 70px;
+
+   /* identical to box height */
+}
+.main_mark{
+   width: 942px;
+   height: 1112px;
+   margin-top: -50px;
+
+   background: #FFFFFF;
+   border-radius: 20px;
+}
+.h_marks{
+   width: 289.14px;
+   height: 57.11px;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 48px;
+   line-height: 58px;
+   /* identical to box height */
+   color: #000000;
+   margin: auto;
+   padding-top: 30px;
+}
+
+@media (max-width: 530px) {
+   .main{
+      width: 95%;
+      /* height: 400px; */
+   }
+   .main_choice{
+      height: 350px;
+   }
+   .welcome{
+      width: 100%;
+   }
+   .descriptios{
+      width: 100%;
+   }
+   .buttons{
+      width: 95%;
+   }
+   .button_link{
+      width: 100%;
+   }
+   #id_faculty,
+   #id_group,
+   #id_email {
+      width: 90%;
+      margin: auto;
+      margin-top: 60px;
+      height: 54px;
+   }
+   .button_form{
+      width: 90%;
+      height: 54px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+
+      align-items: center;
+      padding: 18px;
+      gap: 5px;
+   }
+}

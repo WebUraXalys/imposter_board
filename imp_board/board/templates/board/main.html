@@ -1,14 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Вітаємо!</title>
+    <link rel="stylesheet" href="{% static 'board/style.css' %}">
 </head>
 <body>
-    {% for ds in disciplines %}
-        {{ ds }}
-    {% endfor %}
+    <div class="conteiner">
+        <main class="main main_mark">
+            <div class="welcome_div">
+                <h1 class="h_marks">
+                    Оцінювання 
+                </h1>
+                <hr>
+                <h2 class="h2marks">
+                    Група: {{ disciplines.0.group}}
+                </h2>
+                <hr>
+            </div>
+            <div class="description">
+                {% for ds in disciplines %}
+                <div class="disciplines">
+                    <p class="disciplines_p">{{ ds.discipline }}</p>
+                    <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
+                    <hr>
+                    <div class="block_marks">
+                        .
+                        <input type="text" name="" id="">
+                        <input type="text" name="" id="">
+                        <input type="text" name="" id="">
+                    <p class="">Коментра</p>
+                    </div>
+                    <input type="text">
+                    <hr>
+
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+    <script src="{% static 'board/main.js' %}"></script>
 </body>
-</html>

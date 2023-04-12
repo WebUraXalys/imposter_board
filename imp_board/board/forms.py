@@ -1,5 +1,5 @@
 from django import forms
-from .models import Group, Faculty
+from .models import Group, Faculty, Teacher
 
 class StudVal(forms.ModelForm):
     faculty = forms.CharField(label="faculty", max_length=30)
@@ -22,3 +22,11 @@ class StudentValidation(forms.Form):
         self.fields['faculty'].widget.attrs['placeholder'] = 'Оберіть ваш факультет'
         self.fields['group'].widget.attrs['placeholder'] = 'Оберіть вашу групу'
         self.fields['email'].widget.attrs['placeholder'] = 'Вкажіть свою корпоративну пошту'
+
+
+class TeacherChoice(forms.Form):
+    teacher = forms.ModelChoiceField(queryset=Teacher.objects.all().order_by('name'))
+
+
+class TeacherFacCh(forms.Form):
+    faculty = forms.ModelChoiceField(queryset=Faculty.objects.all().order_by('name'))
