@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
    <div class="conteiner">
       <main class="main main_mark">
          <div class="welcome_div">
@@ -21,8 +22,16 @@
                Викладач
             </h1>
          </div>
+
          {{ teacher.name }}
+    {%for d in data%}
+      {{d}}
+      
+   {%endfor%}
       </main>
    </div>
    <script src="{% static 'board/main.js' %}"></script>
+
+   
+
 </body>

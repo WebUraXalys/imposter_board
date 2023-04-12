@@ -26,26 +26,39 @@
             </div>
             <div class="description">
                 {% for ds in disciplines %}
+                <h1>{{ds.discipline.teacher.name}}</h1>
                 <div class="disciplines">
                     <p class="disciplines_p">{{ ds.discipline }}</p>
                     <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
                     <hr>
-                    <div class="block_marks">
+                    
+                </div>
+                <div class="block_marks none">
                         <div class="block_marks_inputs">
                             <p >Я:</p>
                             <input type="text" name="" id="" class="input_mark">
                             <p >Я:</p>
-                            <input type="text" name="" id="">
+                            <input type="text" name="" id="" class="input_mark">
                             <p >Я:</p>
-                            <input type="text" name="" id="">
+                            <input type="text" name="" id="" class="input_mark">
                         </div>
                         <div class="komentar">
                             <p class="">Коментра</p>
-                            <input type="text">
+                            <input type="text" class=kom_inp>
+                            <input type="button" value="Рекомендації відгуків " class="button_temp">
+                            <input type="submit" value="Надіслати" class="button_temp">
+                            <div class="vidhuk none">
+                                <p>Чудовий вчитель і уроки класні!</p>
+                                <p>Нудно!</p>
+                                <p>Багато матеріалу</p>
+                                <p>Чудовий предмет, але вчитель нудний</p>
+                                <p>Некорисний матеріал</p>
+                                <p>Старі технології і методи</p>
+                                <p>Розказує цікаві історії</p>
+                            </div>
                         </div>
                     </div>
                     <hr>
-                </div>
                 {% endfor %}
             </div>
         </main>
