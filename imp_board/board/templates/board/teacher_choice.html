@@ -26,7 +26,7 @@
                     {% for teacher in teachers %}
                     <option value="{{ teacher.id }}">{{ teacher.name }}</option>
                     {% endfor %}
-                    <input type="submit">
+                    <input type="submit" class="button_form button1"></input>
                     {% csrf_token %}
                 </select>
             </form>

@@ -201,6 +201,15 @@ option{
    border-radius: 20px;
    border: none;
 }
+#id_teacher{
+      width: 440px;
+      height: 90px;
+      margin: auto;
+      margin-top: 60px;
+      background: #E1E1E1;
+      border-radius: 20px;
+      border: none;
+}
 form > p{
    margin: auto;
 }
@@ -308,7 +317,8 @@ form > p{
    #id_faculty,
    #id_group,
    #id_email,
-   #id_faculty {
+   #id_faculty,
+   #id_teacher {
       width: 90%;
       margin: auto;
       margin-top: 60px;

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Вітаємо!</title>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <link rel="stylesheet" href="{% static 'board/style.css' %}">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <div class="conteiner">
+      <main class="main main_mark">
+         <div class="welcome_div">
+            <h1 class="h_marks">
+               Оцінювання
+            </h1>
+            <hr>
+            <h2 class="h2marks">
+               Група: {{ disciplines.0.group}}
+            </h2>
+            <hr>
+         </div>
+         <div class="chart_main">
+            <canvas id="radarChart"></canvas>
+         </div>
+      </main>
+   </div>
+   <script src="{% static 'board/main.js' %}"></script>
+    <script>
+       // Define the teacher data object
+       var teacherData = {
+          "name": "John Doe",
+          "id": "12345",
+          "m": 8,
+          "o": 5,
+          "i": 9
+       };
+
+       // Extract the values for m, o, and i from the data
+       var m = teacherData.m;
+       var o = teacherData.o;
+       var i = teacherData.i;
+
+       // Get the canvas element and create a new chart
+       var ctx = document.getElementById('radarChart').getContext('2d');
+       var myChart = new Chart(ctx, {
+          type: 'radar',
+
+          // Set the data for the chart
+          data: {
+             labels: ['M', 'O', 'I'],
+             datasets: [{
+                label: 'My Dataset',
+                data: [m, o, i],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+             }]
+          },
+
+          // Set configuration options for the chart
+          options: {
+             scale: {
+                ticks: {
+                   beginAtZero: true,
+                   max: 10
+                }
+             }
+          }
+       });
+    </script>
+</body>
