@@ -7,6 +7,8 @@ from django.core.exceptions import PermissionDenied
 from django.conf import settings
 from django.urls import reverse, reverse_lazy
 from datetime import datetime
+import xlwt
+from xlwt import Workbook
 
 def choice_gr(request):
     return render(request, 'board/choice_group.html')
@@ -187,4 +189,67 @@ def current_semester(request, pk):
 
 
 def generete_excel(request, pk):
+    wb = Workbook()
+
+    group = Group.objects.get(pk=pk)
     disciplines = GroupsToDiscipline.objects.filter(group=pk)
+    print(disciplines)
+    
+
+    sheet = wb.add_sheet("Sheet 1")
+
+    sheet.write(0, 3, f"Таблиця оцінювання дисциплін групи {group}")
+    sheet.write(1, 2, "Примітка:")
+    sheet.write(2, 2, "Я: якість викладання, включає зміст навчальної дисципліни, актуальність та структуру матеріалів")
+    sheet.write(3, 2, "М: методичне забезпечення — наявність навчальних посібників, конспектів лекцій, презентацій, методичних вказівок, інструкцій до ЛР, індивідуальних завдань тощо.")
+    sheet.write(4, 2, "О: об’єктивність оцінювання — включає систему та критерії оцінювання, зокрема розподіл балів протягом семестру та під час екзамену, а також неупередженість та справедливість оцінювання.")
+
+    disc_cell_row = 7
+    disc_cell_column = 1
+    
+    teacher_cell_row = 8
+    teacher_cell_column = 1
+
+    head_row=9
+    qa_head_column=1
+    ms_head_column=2
+    ob_head_column=3
+    
+    qa_cell_column = 1
+    ms_cell_column = 2
+    ob_cell_column = 3
+    note_cell_column = 4
+
+    for discipline in disciplines:
+        average = AverageMark.objects.get(group=pk, discipline=discipline.pk)
+        sheet.write_merge(disc_cell_row, disc_cell_row, disc_cell_column, disc_cell_column+3, discipline.discipline.name)
+        sheet.write_merge(teacher_cell_row, teacher_cell_row, teacher_cell_column, teacher_cell_column+3, discipline.discipline.teacher.name)
+        sheet.write(head_row, qa_head_column, f"Сер. Я: {average.quality}")
+        sheet.write(head_row, ms_head_column, f"Сер. М: {average.methodological_support}")
+        sheet.write(head_row, ob_head_column, f"Сер. О: {average.objectivity}")
+
+        Marks = Mark.objects.filter(group=pk, discipline=discipline.pk)
+        cell_row = 10
+        n = cell_row-9
+        for m in Marks:
+            # sheet.write(cell_row, 0, n)
+            sheet.write(cell_row, qa_cell_column, m.quality)
+            sheet.write(cell_row, ms_cell_column, m.methodological_support)
+            sheet.write(cell_row, ob_cell_column, m.objectivity)
+            sheet.write(cell_row, note_cell_column, m.note)
+            cell_row += 1
+            wb.save(f"Оцінювання {group}.xls")
+
+
+        disc_cell_column += 4
+        teacher_cell_column += 4
+        qa_head_column += 4
+        ms_head_column += 4
+        ob_head_column += 4
+        qa_cell_column += 4
+        ms_cell_column += 4
+        ob_cell_column += 4
+        note_cell_column += 4
+
+    wb.save(f"Оцінювання {group}.xls")
+    return HttpResponse("Generated excel")
