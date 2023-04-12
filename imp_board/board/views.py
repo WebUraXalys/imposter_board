@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect, JsonResponse
+from django.shortcuts import render, HttpResponse, redirect
+from django.http.response import JsonResponse
 from .forms import StudentValidation, StudVal
 from .models import *
 from django.core.mail import send_mail
