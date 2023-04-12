@@ -6,7 +6,7 @@
    display: none;
 }
 body{
-   background-color: paleturquoise;
+   background: linear-gradient(287.03deg, #43BFC9 0%, #F9F871 121.21%);
 }
 .conteiner{
    margin-top: 135px;
@@ -19,7 +19,7 @@ body{
    border-radius: 20px;
 }
 .welcome{
-   width: 168px;
+   width: 480px;
    height: 48px;
    margin: auto;
    padding-top: 54px;
@@ -107,7 +107,7 @@ body{
 
 .button_form{
    position: absolute;
-   width: 437px;
+   width: 440px;
    height: 138px;
    left: 501px;
    top: 456px;
@@ -130,13 +130,34 @@ label{
    display: none;
 }
 #id_faculty{
-   /* display: none; */
+   width: 440px;
+   height: 90px;
+
+   margin: auto;
+
+   margin-top: 60px;
+
+   background: #E1E1E1;
+   border-radius: 20px;
+   border: none;
+}
+option{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 44px;
+
+    color: #000000;
 }
 #id_group{
    /* display: none; */
-   width: 400px;
-   height: 100px;
+   width: 440px;
+   height: 90px;
+
    margin: auto;
+
+   margin-top: 60px;
 
    background: #E1E1E1;
    border-radius: 20px;
@@ -144,5 +165,31 @@ label{
 }
 #id_email{
    /* display: none; */
+   width: 440px;
+   height: 90px;
+
+   margin: auto;
+
+   margin-top: 60px;
+
+   background: #E1E1E1;
+   border-radius: 20px;
+   border: none;
+}
+#id_email::placeholder {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 1.5em;
+   line-height: 44px;
+   margin-left: 10px;
+}
+#id_email:placeholder-shown {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 1.5em;
+   line-height: 44px;
+   /* margin-left: 10px; */
 }
 

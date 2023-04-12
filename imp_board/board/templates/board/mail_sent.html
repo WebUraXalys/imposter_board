@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,24 +9,23 @@
    <title>Вітаємо!</title>
    <link rel="stylesheet" href="{% static 'board/style.css' %}">
 </head>
+
 <body>
    <div class="conteiner">
       <main class="main">
          <div class="welcome_div">
             <h1 class="welcome">
-               Оберіть факультет
+               Підтвердження
             </h1>
          </div>
-         <div class="form">
-            <form method="POST">
-               {{ form.as_p }}
-               <!-- <input type="submit"> -->
-               <input type="submit" class="button_form button1"></input>
-               {% csrf_token %}
-            </form>
+         <div class="description">
+            <p class="description_p">
+               
+            </p>
          </div>
       </main>
    </div>
    <script src="{% static 'board/main.js' %}"></script>
 </body>
+
 </html>
