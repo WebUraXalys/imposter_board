@@ -312,7 +312,7 @@ def feedbacks(request, name):
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk).note
             except:
-                pass
+                average = None
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
