@@ -17,10 +17,9 @@
                 </h1>
                 <hr>
                 <h2 class="h2marks">
-                    
-                     Група: {{ disciplines.0.group}}
-                
+                    Група: {{ disciplines.0.group}}
                 </h2>
+                <hr>
             </div>
             <div class="description">
                 {% for ds in disciplines %}
@@ -28,9 +27,17 @@
                     <p class="disciplines_p">{{ ds.discipline }}</p>
                     <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
                     <hr>
+                    <div class="block_marks">
+                        .
+                        <input type="text" name="" id="">
+                        <input type="text" name="" id="">
+                        <input type="text" name="" id="">
+                    <p class="">Коментра</p>
+                    </div>
+                    <input type="text">
+                    <hr>
+
                 </div>
-                
-                
                 {% endfor %}
             </div>
         </main>

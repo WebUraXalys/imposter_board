@@ -246,6 +246,9 @@ option{
 @media (max-width: 530px) {
    .main{
       width: 95%;
+      /* height: 400px; */
+   }
+   .main_choice{
       height: 350px;
    }
    .welcome{
