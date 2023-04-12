@@ -107,11 +107,7 @@ body{
 /* step2 */
 
 .button_form{
-   position: absolute;
-   width: 440px;
-   height: 138px;
-   left: 501px;
-   top: 456px;
+
 
    background: #B4F289;
    border-radius: 20px;
@@ -252,5 +248,16 @@ option{
    .button_link{
       width: 100%;
    }
+   #id_faculty,
+   #id_group,
+   #id_email {
+      width: 90%;
+      margin: auto;
+      margin-top: 60px;
+   }
+   .button_form{
+      
+   }
+
 
 }
