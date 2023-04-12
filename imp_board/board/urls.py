@@ -11,5 +11,6 @@ urlpatterns = [
     path('groupgen/', group_gen, name="groupgen"),
     path('curr_semester/<pk>', current_semester, name="semester"),
     path('mail_sent/', mail_sent, name="mail_sent"),
-    path('addmark/', create_mark, name="addmar")
+    path('addmark/', create_mark, name="addmar"),
+    path('tc/', teacher_ch, name="tch"),
 ]
