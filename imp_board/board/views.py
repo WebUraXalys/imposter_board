@@ -156,9 +156,21 @@ def teacher_ch(request, fac):
 
 def teacher_page(request, name):
     teacher = Teacher.objects.get(name=name)
+    disciplines = Discipline.objects.filter(teacher=teacher)
+    data = []
+    for discipline in disciplines:
+        groups = GroupsToDiscipline.objects.filter(discipline=discipline)
+        for group in groups:
+            avarage = AverageMark.objects.get(group=group, discipline=discipline)
+            stats = {'discipline': discipline,
+                     'group': group,
+                     'avarage': avarage}
+            data.append(stats)
     return render(request, 'board/teacher.html', context={
-        "teacher": teacher
+        "teacher": teacher,
+        "data": data
     })
+
 
 def create_or_update_average_mark(mark):
     avermark, created = AverageMark.objects.get_or_create(group=mark.group, discipline=mark.discipline, semester=mark.semester)
