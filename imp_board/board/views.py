@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
 from django.conf import settings
 from django.urls import reverse, reverse_lazy
+from datetime import datetime
 
 def choice_gr(request):
     return render(request, 'board/choice_group.html')
@@ -134,3 +135,17 @@ def create_or_update_average_mark(mark):
         avermark.methodological_support = (avermark.methodological_support * marks_number) + mark.methodological_support / (marks_number+1)
         avermark.objectivity = (avermark.objectivity * marks_number) + mark.objectivity / (marks_number+1)
     avermark.save()
+
+
+def current_semester(request, pk):
+    course = Group.objects.get(pk=pk)
+    passed_semesters = (int(course.name[4])-1)*2
+    date = datetime.now().month
+    if date in range(9, 12):
+        semester = 1
+    elif date in range(1, 6):
+        semester = 2
+    else:
+        semester = 0
+
+    return HttpResponse(passed_semesters + semester)
