@@ -31,6 +31,7 @@
                     <p class="disciplines_p">{{ ds.discipline }}</p>
                     <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
                     <hr>
+
                     
                 </div>
                 <div class="block_marks none">
@@ -57,6 +58,15 @@
                                 <p>Розказує цікаві історії</p>
                             </div>
                         </div>
+
+                    <div class="block_marks">
+                        <form method="POST" action="{% url 'addmark' %}">
+                            {{ form.as_p }}
+                            <input type="hidden" value="{{ds.id}}" id="gtsid", name="gtsid">
+                            {% csrf_token %}
+                            <input type="submit">
+                        </form>
+
                     </div>
                     <hr>
                 {% endfor %}

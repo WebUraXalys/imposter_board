@@ -36,7 +36,7 @@ class MarkVal(forms.Form):
     quality = forms.IntegerField(label="quality",min_value=1, max_value=10)
     methodological_support = forms.IntegerField(label="methodological_support",min_value=1, max_value=10)
     objectivity = forms.IntegerField(label="objectivity",min_value=1, max_value=10)
-    note = forms.Textarea()
-    def __init__(self, *args, **kwargs):
-        super(MarkVal, self).__init__(*args, **kwargs)
-        self.fields['note'].widget.attrs['placeholder'] = 'Додайте кілька слів про викладача та дисипліну'
+    note = forms.CharField(label="note", min_length=0, max_length=100)
+    # def __init__(self, *args, **kwargs):
+    #     super(MarkVal, self).__init__(*args, **kwargs)
+    #     self.fields['note'].widget.attrs['placeholder'] = 'Додайте кілька слів про викладача та дисипліну'
