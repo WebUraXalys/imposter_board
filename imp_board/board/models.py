@@ -40,7 +40,7 @@ class GroupsToDiscipline(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.discipline + " " + self.group
+        return self.discipline.__str__() + " " + self.group.__str__()
 
 class Mark(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
