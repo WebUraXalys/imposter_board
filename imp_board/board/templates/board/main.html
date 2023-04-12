@@ -31,18 +31,24 @@
                     <p class="disciplines_teacher">{{ ds.discipline.teacher }}</p>
                     <hr>
                     <div class="block_marks">
-                        <div class="block_marks_inputs">
-                            <p >Я:</p>
-                            <input type="text" name="" id="">
-                            <p >Я:</p>
-                            <input type="text" name="" id="">
-                            <p >Я:</p>
-                            <input type="text" name="" id="">
-                        </div>
-                        <div class="komentar">
-                            <p class="">Коментра</p>
-                            <input type="text">
-                        </div>
+                        <form method="POST">
+                            <div class="block_marks_inputs">
+                                <p >Я:</p>
+                                <input type="text" name="" id="y">
+                                <p >М:</p>
+                                <input type="text" name="" id="m">
+                                <p >О:</p>
+                                <input type="text" name="" id="o">
+                                <input type="hidden" value="{{ds.id}}" id="dsid">
+                                <input type="hidden" value="{% url 'addmark' %}" id="rq">
+                                {% csrf_token %}
+                            </div>
+                            <div class="komentar">
+                                <p class="">Коментра</p>
+                                <input type="text" name="comment">
+                            </div>
+                        </form>
+                        <button onclick="sendmark()">GOGOOGO</button>
                     </div>
                     <hr>
                 </div>

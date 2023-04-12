@@ -46,6 +46,7 @@ def mail_sent(request):
 
 def create_mark(request):
     if request.method == "POST":
+        print(request.POST)
         grpname = Group.objects.get(name=request.session["allow-group"])
         disc = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).discipline
         grp = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).group
@@ -53,9 +54,9 @@ def create_mark(request):
         if grp.name != grpname:
             return HttpResponse("403 Forbidden", status=403)
 
-        q = request.POST.get('quality')
-        m = request.POST.get('methodology')
-        o = request.POST.get('objectivity')
+        q = request.POST.get('q')
+        m = request.POST.get('m')
+        o = request.POST.get('o')
 
         semester = current_semester()
 
