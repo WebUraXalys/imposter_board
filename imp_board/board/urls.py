@@ -9,4 +9,5 @@ urlpatterns = [
     path('facgen/', generate_faculties, name="facgen"),
     path('groupgen/', group_gen, name="groupgen"),
     path('curr_semester/<pk>', current_semester, name="semester")
+    path('mail_sent/', mail_sent, name="mail_sent")
 ]
