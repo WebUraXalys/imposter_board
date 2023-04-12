@@ -108,6 +108,17 @@ body{
 
 .button_form{
 
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 32px;
+gap: 10px;
+
+width: 440px;
+height: 102px;
+margin: auto;
+margin-top: 40px;
 
    background: #B4F289;
    border-radius: 20px;
@@ -235,6 +246,7 @@ option{
 @media (max-width: 530px) {
    .main{
       width: 95%;
+      height: 350px;
    }
    .welcome{
       width: 100%;
@@ -254,10 +266,19 @@ option{
       width: 90%;
       margin: auto;
       margin-top: 60px;
+      height: 54px;
    }
    .button_form{
-      
+      width: 90%;
+      height: 54px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+
+      align-items: center;
+      padding: 18px;
+      gap: 5px;
    }
-
-
 }
