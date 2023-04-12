@@ -137,14 +137,26 @@ def tchfc(request):
     })
 
 def teacher_ch(request, fac):
+    if request.method == "POST":
+        form = TeacherChoice(request.POST)
+        if form.is_valid():
+            print("wdad")
+            tn = form.cleaned_data['teacher']
+            return redirect('tp', name=tn)
     teachers = Teacher.objects.filter(faculty=Faculty.objects.get(id=fac))
-    tchs = []
-    for t in teachers:
-        tchs.append(t.name)
+    # tchs = []
+    # for t in teachers:
+    #     tchs.append(t.name)
     return render(request, 'board/teacher_choice.html', context={
-        "teachers": tchs
+        "teachers": teachers,
+        "f": TeacherChoice
     })
 
+def teacher_page(request, name):
+    teacher = Teacher.objects.get(name=name)
+    return render(request, 'board/teacher.html', context={
+        "teacher": teacher
+    })
 
 def create_or_update_average_mark(mark):
     avermark, created = AverageMark.objects.get_or_create(group=mark.group, discipline=mark.discipline, semester=mark.semester)
