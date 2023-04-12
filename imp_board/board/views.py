@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, JsonResponse
 from .forms import StudentValidation, StudVal
 from .models import *
 from django.core.mail import send_mail
@@ -52,6 +52,12 @@ def create_mark(request):
         q = request.POST.get('quality')
         m = request.POST.get('methodology')
         o = request.POST.get('objectivity')
+
+        semester = current_semester()
+
+        Mark.objects.create(group=grp, quality=q, methodological_support=m, objectivity=o, discipline=disc, semester=semester)
+
+        return
 
 
     else:
