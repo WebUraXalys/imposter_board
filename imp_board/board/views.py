@@ -195,11 +195,9 @@ def teacher_page(request, name):
             try:
                 avarage = AverageMark.objects.get(group=group.pk, discipline=discipline.pk)
             except:
-<<<<<<< HEAD
                 avarage = None
-=======
+
                 average = None
->>>>>>> e9638c9d40f3be107cb19c7d494e33aa491943ca
             stats = {'discipline': discipline,
                      'group': group,
                      'avarage': avarage}
