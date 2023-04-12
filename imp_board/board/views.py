@@ -56,11 +56,13 @@ def create_mark(request):
 
         semester = current_semester()
 
-        Mark.objects.create(group=grp, quality=q, methodological_support=m, objectivity=o, discipline=disc, semester=semester)
+        mrk = Mark.objects.update_or_create(group=grp, quality=q, methodological_support=m, objectivity=o, discipline=disc, semester=semester)
 
-        return
+        create_or_update_average_mark(mrk)
 
-
+        return JsonResponse({
+            "mark_id": mrk
+        })
     else:
         return HttpResponse("405 Method Not Allowed", status=405)
 
