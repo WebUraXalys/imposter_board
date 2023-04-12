@@ -51,12 +51,12 @@ class Mark(models.Model):
     objectivity = models.IntegerField(default=5, validators=[MaxValueValidator(10),
                                                             MinValueValidator(1)])
     discipline = models.ForeignKey(Discipline, on_delete=models.CASCADE)
-    note = models.CharField(verbose_name="Примітка", null=True, blank=True)
+    note = models.TextField(verbose_name="Примітка", null=True, blank=True)
     semester = models.IntegerField(default=0, verbose_name="Semester number", validators=[MaxValueValidator(10),
                                                                               MinValueValidator(1)])
     
     def __str__(self):
-        return self.group + " " + self.discipline
+        return self.group.name + " " + self.discipline.name
 
 
 class AverageMark(models.Model):
@@ -72,4 +72,4 @@ class AverageMark(models.Model):
                                                                                             MinValueValidator(1)])
     
     def __str__(self):
-        return "Average " + self.group + " " + self.discipline
+        return "Average " + self.group.name + " " + self.discipline.name
