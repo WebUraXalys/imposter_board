@@ -46,27 +46,26 @@ def mail_sent(request):
 
 def create_mark(request):
     if request.method == "POST":
-        print(request.POST)
-        grpname = Group.objects.get(name=request.session["allow-group"])
-        disc = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).discipline
-        grp = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).group
+        form = MarkVal(request.POST)
 
-        if grp.name != grpname:
-            return HttpResponse("403 Forbidden", status=403)
+        if form.is_valid():
+            q = form.cleaned_data['quality']
+            m = form.cleaned_data['methodological_support']
+            o = form.cleaned_data['objectivity']
+            note = form.cleaned_data['note']
 
-        q = request.POST.get('q')
-        m = request.POST.get('m')
-        o = request.POST.get('o')
+            grp = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).group
+            disc = GroupsToDiscipline.objects.get(id=request.POST.get('gtsid')).discipline
 
-        semester = current_semester()
+            semester = current_semester(request, grp.name)
 
-        mrk = Mark.objects.update_or_create(group=grp, quality=q, methodological_support=m, objectivity=o, discipline=disc, semester=semester)
+            mrk = Mark.objects.update_or_create(group=grp, quality=int(q), methodological_support=int(m), objectivity=int(o), discipline=disc, semester=semester, note=note)
 
-        create_or_update_average_mark(mrk)
+            #create_or_update_average_mark(mrk)
 
-        return JsonResponse({
-            "mark_id": mrk
-        })
+            print("imhere")
+
+            return redirect('main', groupname=grp.name)
     else:
         return HttpResponse("405 Method Not Allowed", status=405)
 
@@ -77,7 +76,8 @@ def serve_main(request, groupname):
     grp = Group.objects.get(name=groupname)
     context = {
 
-        "disciplines": GroupsToDiscipline.objects.filter(group=grp)
+        "disciplines": GroupsToDiscipline.objects.filter(group=grp),
+        "form": MarkVal
     }
     print(context['disciplines'])
     return render(request, 'board/main.html', context=context)
@@ -192,9 +192,8 @@ def create_or_update_average_mark(mark):
     avermark.save()
 
 
-def current_semester(request, pk):
-    course = Group.objects.get(pk=pk)
-    passed_semesters = (int(course.name[4])-1)*2
+def current_semester(request, groupname):
+    passed_semesters = (int(groupname[4])-1)*2
     date = datetime.now().month
     if date in range(9, 12):
         semester = 1
@@ -203,8 +202,7 @@ def current_semester(request, pk):
     else:
         semester = 0
 
-    return HttpResponse(passed_semesters + semester)
-
+    return semester
 
 def generete_excel(request, pk):
     wb = Workbook()

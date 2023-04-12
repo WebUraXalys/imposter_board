@@ -55,23 +55,5 @@ buttonForm.addEventListener('click', () => {
   }
 });
 
-function sendmark() {
-   let y = document.getElementById("y").value;
-   let m = document.getElementById("m").value;
-   let o = document.getElementById("o").value;
-   let gtsid = document.getElementById("dsid").value;
-   let rq = document.getElementById("rq").value;
-   let csrf = document.getElementById("csrf").value;
-   let body = "y=" + y + "&m=" + m + "&o=" + o + "&gtsid=" + gtsid + "&csrfmiddlewaretoken=" + csrf
-   fetch(
-      rq, {
-         method: "POST",
-         body: body,
-         //headers: {"Content-Type": "application/x-www-form-urlencoded"}
-      }).then((resp) => {
-         console.log(resp);
-      });
-}
-
   buttonForm.addEventListener("click", displayNextForm);
   window.addEventListener("DOMContentLoaded", displayFirstForm);
